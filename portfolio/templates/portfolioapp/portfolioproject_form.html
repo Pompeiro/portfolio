@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% block title %}Add Project{% endblock title %}
 
@@ -6,7 +7,7 @@
 <h1>Add Project</h1>
 <form method="post" action="{% url 'portfolioapp:add' %}">
   {% csrf_token %}
-  {{ form.as_p }}
+  {{ form|crispy }}
   <button type="submit" class="btn btn-primary">Save</button>
 </form>
 {% endblock %}

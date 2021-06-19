@@ -70,6 +70,9 @@
                 {# URL provided by django-allauth/account/urls.py #}
                 <a class="nav-link" href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a>
               </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'portfolioapp:add' %}">Add project</a>
+            </li>
             {% else %}
               <li class="nav-item">
                 {# URL provided by django-allauth/account/urls.py #}

@@ -1,5 +1,6 @@
 from autoslug import AutoSlugField
 from django.db import models
+from django.urls import reverse
 
 
 class PortfolioProject(models.Model):
@@ -15,3 +16,7 @@ class PortfolioProject(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        """Return absolute URL to the PortfolioProject Detail page."""
+        return reverse("portfolioapp:detail", kwargs={"slug": self.slug})

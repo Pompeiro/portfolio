@@ -8,5 +8,10 @@ urlpatterns = [
         route="",
         view=views.PortfolioProjectListView.as_view(),
         name="list",
-    )
+    ),
+    path(
+        route="<slug:slug>/",
+        view=views.PortfolioProjectDetailView.as_view(),
+        name="detail",
+    ),
 ]

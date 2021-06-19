@@ -7,7 +7,7 @@
 
 <ul>
   {% for project in portfolioproject_list %}
-    <li><a href="#TODO">{{ project.title }}</a></li>
+    <li><a href="{% url 'portfolioapp:detail' project.slug %}">{{ project.title }}</a></li>
   {% endfor %}
 </ul>
 {% endblock content %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Projects: {{ portfolioproject.title }}{% endblock title %}
+
+{% block content %}
+
+
+<h2>{{ portfolioproject.title }}</h2>
+
+{% if project.website %}
+  <p>Website: {{ portfolioproject.website }}</p>
+{% endif %}
+
+{% if project.description %}
+  <p>Description: {{ portfolioproject.description }}</p>
+{% endif %}
+
+<img src="{{ portfolioproject.photo.url }}" alt="Project image" width="350" height="280">
+
+
+{% endblock content %}

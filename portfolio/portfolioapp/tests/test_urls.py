@@ -28,3 +28,13 @@ def test_detail_reverse(project):
 def test_detail_resolve(project):
     url = f"/portfolioapp/{project.slug}/"
     assert resolve(url).view_name == "portfolioapp:detail"
+
+
+def test_update_reverse(project):
+    url = reverse("portfolioapp:update", kwargs={"slug": project.slug})
+    assert url == f"/portfolioapp/{project.slug}/update/"
+
+
+def test_update_resolve(project):
+    url = f"/portfolioapp/{project.slug}/update/"
+    assert resolve(url).view_name == "portfolioapp:update"

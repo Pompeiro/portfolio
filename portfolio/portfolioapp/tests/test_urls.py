@@ -1,14 +1,7 @@
 import pytest
 from django.urls import resolve, reverse
 
-from .factories import PortfolioProjectFactory
-
 pytestmark = pytest.mark.django_db
-
-
-@pytest.fixture
-def project():
-    return PortfolioProjectFactory()
 
 
 def test_list_reverse():

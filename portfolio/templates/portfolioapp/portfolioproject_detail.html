@@ -13,6 +13,16 @@ function imgError(image) {
 
 <h2>{{ portfolioproject.title }}</h2>
 
+{% if request.user.is_superuser %}
+  <p>
+    <a class="btn btn-primary"
+       href="{% url 'portfolioapp:update' portfolioproject.slug %}"
+       role="button">
+      Update
+    </a>
+  </p>
+{% endif %}
+
 {% if portfolioproject.website %}
   <p>Website: <a href="{{ portfolioproject.website }}">{{ portfolioproject.website }}</a></p>
 {% endif %}

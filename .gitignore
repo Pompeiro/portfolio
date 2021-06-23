@@ -325,6 +325,9 @@ portfolio/media/
 .pytest_cache/
 
 
-.env
-.envs/*
-!.envs/.local/
+.env
+
+.envs/.production
+
+!.envs/.local/
+

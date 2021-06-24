@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Champion List{% endblock title %}
+
+{% block content %}
+  <h2>Champion List</h2>
+
+<ul>
+  {% for champion in champion_list %}
+    <li><a href="{% url 'tftchampions:detail' champion.slug %}">{{ champion.name }}</a></li>
+  {% endfor %}
+</ul>
+{% endblock content %}

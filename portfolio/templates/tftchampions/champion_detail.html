@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Champions: {{ champion.name }}{% endblock title %}
+
+{% block content %}
+
+<h2>{{ champion.name }}</h2>
+
+<p>DPS: {{ champion.dps }}</p>
+
+<p>AS: {{ champion.attackspeed }}</p>
+
+<p>DMG: {{ champion.dmg }}</p>
+
+<p>Range: {{ champion.range }}</p>
+
+<p>HP: {{ champion.hp }}</p>
+
+<p>Mana: {{ champion.mana }}</p>
+
+<p>Armor: {{ champion.armor }}</p>
+
+<p>MR: {{ champion.mr }}</p>
+
+<p>Origin primary: {{ champion.origin_prim }}</p>
+
+{% if champion.origin_sec %}
+  <p>Origin Secondary: {{ champion.origin_sec }}</p>
+{% endif %}
+
+<p>Class primary: {{ champion.class_prim }}</p>
+
+{% if champion.class_sec %}
+  <p>Class secondary: {{ champion.class_sec }}</p>
+{% endif %}
+
+{% endblock content %}

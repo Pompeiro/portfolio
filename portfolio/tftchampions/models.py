@@ -20,9 +20,13 @@ class Champion(TimeStampedModel):
     armor = models.IntegerField("Armor of champion")
     mr = models.IntegerField("Magic resistance of champion")
     origin_prim = models.CharField("Origin primary of champion", max_length=30)
-    origin_sec = models.CharField("Origin secondary of champion", max_length=30)
+    origin_sec = models.CharField(
+        "Origin secondary of champion", max_length=30, blank=True
+    )
     class_prim = models.CharField("Class primary of champion", max_length=30)
-    class_sec = models.CharField("Class secondary of champion", max_length=30)
+    class_sec = models.CharField(
+        "Class secondary of champion", max_length=30, blank=True
+    )
     cost = models.IntegerField("Cost of champion", choices=Cost.choices)
     tier = models.IntegerField("Tier of champion", choices=Tier.choices)
     slug = AutoSlugField(

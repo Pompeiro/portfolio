@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, DetailView, ListView
 
 from .models import Champion
@@ -11,7 +12,7 @@ class ChampionDetailView(DetailView):
     model = Champion
 
 
-class ChampionCreateView(CreateView):
+class ChampionCreateView(LoginRequiredMixin, CreateView):
     model = Champion
     fields = [
         "name",

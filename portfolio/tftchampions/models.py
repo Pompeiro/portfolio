@@ -1,4 +1,5 @@
 from autoslug import AutoSlugField
+from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from model_utils.models import TimeStampedModel
@@ -47,6 +48,11 @@ class Champion(TimeStampedModel):
     tier = models.IntegerField("Tier of champion", choices=Tier.choices)
     slug = AutoSlugField(
         "Champion name", unique=True, always_update=False, populate_from="name"
+    )
+    creator = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        on_delete=models.SET_NULL,
     )
 
     class Meta:

@@ -34,4 +34,14 @@
   <p>Class secondary: {{ champion.class_sec }}</p>
 {% endif %}
 
+<hr/>
+<h3>Submitted by
+  <a href="{% url 'users:detail' champion.creator.username %}">
+    {{ champion.creator.username }}
+  </a>
+</h3>
+{% if champion.creator.name %}
+  <p>{{ champion.creator.name }}</p>
+{% endif %}
+
 {% endblock content %}

@@ -2,6 +2,8 @@ import factory
 import factory.fuzzy
 from django.template.defaultfilters import slugify
 
+from portfolio.users.tests.factories import UserFactory
+
 from ..models import (
     ARMOR_LOWER_CONSTRAINT,
     ARMOR_UPPER_CONSTRAINT,
@@ -40,6 +42,7 @@ class ChampionFactory(factory.django.DjangoModelFactory):
     class_sec = factory.fuzzy.FuzzyText()
     cost = factory.fuzzy.FuzzyChoice([x[0] for x in Champion.Cost.choices])
     tier = factory.fuzzy.FuzzyChoice([x[0] for x in Champion.Tier.choices])
+    creator = factory.SubFactory(UserFactory)
 
     class Meta:
         model = Champion

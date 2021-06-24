@@ -3,6 +3,22 @@ from django.db import models
 from django.urls import reverse
 from model_utils.models import TimeStampedModel
 
+DPS_LOWER_CONSTRAINT = 0
+ATTACKSPEED_LOWER_CONSTRAINT = 0.0
+DMG_LOWER_CONSTRAINT = 0
+HP_LOWER_CONSTRAINT = 0
+MANA_LOWER_CONSTRAINT = 0
+ARMOR_LOWER_CONSTRAINT = 0
+MR_LOWER_CONSTRAINT = 0
+
+DPS_UPPER_CONSTRAINT = 800
+ATTACKSPEED_UPPER_CONSTRAINT = 8.0
+DMG_UPPER_CONSTRAINT = 500
+HP_UPPER_CONSTRAINT = 5000
+MANA_UPPER_CONSTRAINT = 300
+ARMOR_UPPER_CONSTRAINT = 300
+MR_UPPER_CONSTRAINT = 300
+
 
 class Champion(TimeStampedModel):
 
@@ -36,31 +52,38 @@ class Champion(TimeStampedModel):
     class Meta:
         constraints = [
             models.CheckConstraint(
-                check=models.Q(dps__gte=0) & models.Q(dps__lte=800),
+                check=models.Q(dps__gte=DPS_LOWER_CONSTRAINT)
+                & models.Q(dps__lte=DPS_UPPER_CONSTRAINT),
                 name="A dps value is valid between 0 and 800",
             ),
             models.CheckConstraint(
-                check=models.Q(attackspeed__gte=0.0) & models.Q(attackspeed__lte=8.0),
+                check=models.Q(attackspeed__gte=ATTACKSPEED_LOWER_CONSTRAINT)
+                & models.Q(attackspeed__lte=ATTACKSPEED_UPPER_CONSTRAINT),
                 name="An attackspeed value is valid between 0.0 and 8.0",
             ),
             models.CheckConstraint(
-                check=models.Q(dmg__gte=0) & models.Q(dmg__lte=500),
+                check=models.Q(dmg__gte=DMG_LOWER_CONSTRAINT)
+                & models.Q(dmg__lte=DMG_UPPER_CONSTRAINT),
                 name="A dmg value is valid between 0 and 500",
             ),
             models.CheckConstraint(
-                check=models.Q(hp__gte=0) & models.Q(hp__lte=5000),
+                check=models.Q(hp__gte=HP_LOWER_CONSTRAINT)
+                & models.Q(hp__lte=HP_UPPER_CONSTRAINT),
                 name="A hp value is valid between 0 and 5000",
             ),
             models.CheckConstraint(
-                check=models.Q(mana__gte=0) & models.Q(mana__lte=300),
+                check=models.Q(mana__gte=MANA_LOWER_CONSTRAINT)
+                & models.Q(mana__lte=MANA_UPPER_CONSTRAINT),
                 name="A mana value is valid between 0 and 300",
             ),
             models.CheckConstraint(
-                check=models.Q(armor__gte=0) & models.Q(armor__lte=300),
+                check=models.Q(armor__gte=ARMOR_LOWER_CONSTRAINT)
+                & models.Q(armor__lte=ARMOR_UPPER_CONSTRAINT),
                 name="AN armor value is valid between 0 and 300",
             ),
             models.CheckConstraint(
-                check=models.Q(mr__gte=0) & models.Q(mr__lte=300),
+                check=models.Q(mr__gte=MR_LOWER_CONSTRAINT)
+                & models.Q(mr__lte=MR_UPPER_CONSTRAINT),
                 name="A mr value is valid between 0 and 300",
             ),
         ]

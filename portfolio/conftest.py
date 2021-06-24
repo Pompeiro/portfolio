@@ -2,6 +2,7 @@ import pytest
 from django.core.files.uploadedfile import SimpleUploadedFile
 
 from portfolio.portfolioapp.tests.factories import PortfolioProjectFactory
+from portfolio.tftchampions.tests.factories import ChampionFactory
 from portfolio.users.models import User
 from portfolio.users.tests.factories import UserFactory
 
@@ -33,3 +34,8 @@ def fixture_photo():
 
     photo = SimpleUploadedFile("small.gif", testfile, content_type="image/gif")
     return photo
+
+
+@pytest.fixture(name="champion")
+def fixture_champion():
+    return ChampionFactory()

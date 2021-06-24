@@ -10,4 +10,13 @@
     <li><a href="{% url 'tftchampions:detail' champion.slug %}">{{ champion.name }}</a></li>
   {% endfor %}
 </ul>
+<hr/>
+
+<p>Don't see a champion listed here?</p>
+<p>
+  <a class="btn btn-primary"
+     href="{% url 'tftchampions:add' %}" role="button">
+    Add Champion
+  </a>
+</p>
 {% endblock content %}

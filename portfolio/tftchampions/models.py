@@ -92,5 +92,5 @@ class Champion(TimeStampedModel):
         return self.name
 
     def get_absolute_url(self):
-        """Return absolute URL to the PortfolioProject Detail page."""
+        """Return absolute URL to the champion Detail page."""
         return reverse("tftchampions:detail", kwargs={"slug": self.slug})

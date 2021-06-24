@@ -1,4 +1,4 @@
-from django.views.generic import DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView
 
 from .models import Champion
 
@@ -9,3 +9,24 @@ class ChampionListView(ListView):
 
 class ChampionDetailView(DetailView):
     model = Champion
+
+
+class ChampionCreateView(CreateView):
+    model = Champion
+    fields = [
+        "name",
+        "dps",
+        "attackspeed",
+        "dmg",
+        "range",
+        "hp",
+        "mana",
+        "armor",
+        "mr",
+        "origin_prim",
+        "origin_sec",
+        "class_prim",
+        "class_sec",
+        "cost",
+        "tier",
+    ]

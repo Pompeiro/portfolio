@@ -16,6 +16,11 @@ urlpatterns = [
     ),
     path(
         route="<slug:slug>/",
+        view=views.ChampionUpdateView(),
+        name="update",
+    ),
+    path(
+        route="<slug:slug>/",
         view=views.ChampionDetailView.as_view(),
         name="detail",
     ),

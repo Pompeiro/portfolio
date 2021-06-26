@@ -44,4 +44,12 @@
   <p>{{ champion.creator.name }}</p>
 {% endif %}
 
+<p>
+  <a class="btn btn-primary"
+     href="{% url 'tftchampions:update' champion.slug %}"
+     role="button">
+    Update
+  </a>
+</p>
+
 {% endblock content %}

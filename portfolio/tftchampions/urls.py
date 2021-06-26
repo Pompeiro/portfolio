@@ -15,8 +15,8 @@ urlpatterns = [
         name="add",
     ),
     path(
-        route="<slug:slug>/",
-        view=views.ChampionUpdateView(),
+        route="<slug:slug>/update/",
+        view=views.ChampionUpdateView.as_view(),
         name="update",
     ),
     path(

@@ -1,5 +1,5 @@
 import pytest
-from django.urls import resolve, reverse
+from django.urls import resolve, reverse, reverse_lazy
 
 pytestmark = pytest.mark.django_db
 
@@ -38,3 +38,13 @@ def test_update_reverse(champion):
 def test_update_resolve(champion):
     url = f"/tftchampions/{champion.slug}/update/"
     assert resolve(url).view_name == "tftchampions:update"
+
+
+def test_delete_reverse_lazy(champion):
+    url = reverse_lazy("tftchampions:delete", kwargs={"slug": champion.slug})
+    assert url == f"/tftchampions/{champion.slug}/delete/"
+
+
+def test_delete_resolve(champion):
+    url = f"/tftchampions/{champion.slug}/delete/"
+    assert resolve(url).view_name == "tftchampions:delete"

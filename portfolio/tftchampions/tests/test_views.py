@@ -5,6 +5,7 @@ from pytest_django.asserts import assertContains
 from ..models import Champion
 from ..views import (
     ChampionCreateView,
+    ChampionDeleteView,
     ChampionDetailView,
     ChampionListView,
     ChampionUpdateView,
@@ -163,3 +164,26 @@ def test_champion_update(rf, admin_user, champion):
     assert updated_champion.name == champion.name
     assert updated_champion.dps == 68
     assert updated_champion.range == Champion.Range.One
+
+
+def test_good_champion_delete_view(rf, admin_user, champion):
+    url = reverse("tftchampions:delete", kwargs={"slug": champion.slug})
+    request = rf.get(url)
+    request.user = admin_user
+    callable_obj = ChampionDeleteView.as_view()
+    response = callable_obj(request, slug=champion.slug)
+
+    assertContains(response, "Are you sure you want to delete")
+
+
+def test_champion_delete(rf, admin_user, champion):
+    url = reverse("tftchampions:delete", kwargs={"slug": champion.slug})
+    request = rf.post(url)
+    request.user = admin_user
+    callable_obj = ChampionDeleteView.as_view()
+    response = callable_obj(request, slug=champion.slug)
+
+    assert response.status_code == 302
+    assert list(Champion.objects.all()) == list(Champion.objects.none())
+    # test redirect https://stackoverflow.com/questions/48293627/how-to-test-redirection-in-django-using-pytest
+    assert response["Location"] == reverse("tftchampions:list")

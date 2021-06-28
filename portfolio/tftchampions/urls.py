@@ -24,4 +24,9 @@ urlpatterns = [
         view=views.ChampionUpdateView.as_view(),
         name="update",
     ),
+    path(
+        route="<slug:slug>/delete/",
+        view=views.ChampionDeleteView.as_view(),
+        name="delete",
+    ),
 ]

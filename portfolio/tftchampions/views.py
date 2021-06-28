@@ -1,5 +1,12 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import CreateView, DetailView, ListView, UpdateView
+from django.urls import reverse_lazy
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    UpdateView,
+)
 
 from .models import Champion
 
@@ -57,3 +64,8 @@ class ChampionUpdateView(LoginRequiredMixin, UpdateView):
         "tier",
     ]
     action = "Update"
+
+
+class ChampionDeleteView(LoginRequiredMixin, DeleteView):
+    model = Champion
+    success_url = reverse_lazy("tftchampions:list")

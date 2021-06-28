@@ -50,6 +50,13 @@
      role="button">
     Update
   </a>
+    <a class="btn btn-secondary"
+     href="{% url 'tftchampions:delete' champion.slug %}"
+     role="button">
+    Delete
+  </a>
 </p>
+
+
 
 {% endblock content %}

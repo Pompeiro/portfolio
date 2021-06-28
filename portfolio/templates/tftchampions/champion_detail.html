@@ -34,6 +34,10 @@
   <p>Class secondary: {{ champion.class_sec }}</p>
 {% endif %}
 
+<p>Cost: {{ champion.cost }}</p>
+
+<p>Tier: {{ champion.tier }}</p>
+
 <hr/>
 <h3>Submitted by
   <a href="{% url 'users:detail' champion.creator.username %}">

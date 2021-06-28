@@ -7,6 +7,7 @@ class PortfolioProject(models.Model):
     title = models.CharField("Title of project", max_length=100)
     description = models.TextField("Description", blank=True)
     website = models.URLField(blank=True)
+    try_online_url = models.URLField(blank=True)
     photo = models.ImageField(
         upload_to="portfolioapp", default="portfolioapp/blank_project.jpg"
     )

@@ -3,7 +3,12 @@ from django.urls import reverse
 from pytest_django.asserts import assertContains
 
 from ..models import Champion
-from ..views import ChampionCreateView, ChampionDetailView, ChampionListView
+from ..views import (
+    ChampionCreateView,
+    ChampionDetailView,
+    ChampionListView,
+    ChampionUpdateView,
+)
 from .factories import ChampionFactory
 
 pytestmark = pytest.mark.django_db
@@ -75,7 +80,7 @@ def test_champion_create_form_valid(rf, admin_user, champion):
         "dps": champion.dps,
         "attackspeed": champion.attackspeed,
         "dmg": champion.dmg,
-        "range": champion.range,
+        "range": Champion.Range.One,
         "hp": champion.hp,
         "mana": champion.mana,
         "armor": champion.armor,
@@ -114,3 +119,47 @@ def test_champion_create_correct_title(rf, admin_user):
     request.user = admin_user
     response = ChampionCreateView.as_view()(request)
     assertContains(response, "Add Champion")
+
+
+def test_good_champion_update_view(rf, admin_user, champion):
+    url = reverse("tftchampions:update", kwargs={"slug": champion.slug})
+    request = rf.get(url)
+    request.user = admin_user
+    callable_obj = ChampionUpdateView.as_view()
+    response = callable_obj(request, slug=champion.slug)
+
+    assertContains(response, "Update Champion")
+
+
+def test_champion_update(rf, admin_user, champion):
+    """Post request to ChampionUpdateView updates a champion and redirects."""
+    form_data = {
+        "name": champion.name,
+        "dps": 68,
+        "attackspeed": champion.attackspeed,
+        "dmg": champion.dmg,
+        "range": Champion.Range.One,
+        "hp": champion.hp,
+        "mana": champion.mana,
+        "armor": champion.armor,
+        "mr": champion.mr,
+        "origin_prim": champion.origin_prim,
+        "origin_sec": champion.origin_sec,
+        "class_prim": champion.class_prim,
+        "class_sec": champion.class_sec,
+        "cost": champion.cost,
+        "tier": champion.tier,
+    }
+
+    url = reverse("tftchampions:update", kwargs={"slug": champion.slug})
+    request = rf.post(url, form_data)
+    request.user = admin_user
+    callable_obj = ChampionUpdateView.as_view()
+    response = callable_obj(request, slug=champion.slug)
+
+    assert response.status_code == 302
+    updated_champion = Champion.objects.get(dps=68)
+
+    assert updated_champion.name == champion.name
+    assert updated_champion.dps == 68
+    assert updated_champion.range == Champion.Range.One

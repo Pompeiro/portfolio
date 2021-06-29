@@ -77,6 +77,7 @@ LOCAL_APPS = [
     "portfolio.users.apps.UsersConfig",  # users app
     "portfolio.portfolioapp.apps.PortfolioappConfig",  # porfolioapp config
     "portfolio.tftchampions.apps.TftchampionsConfig",  # tftchampions config
+    "portfolio.templatematching.apps.TemplatematchingConfig",  # templatematching config
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

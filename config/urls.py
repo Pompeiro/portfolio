@@ -23,6 +23,10 @@ urlpatterns = [
         "tftchampions/",
         include("portfolio.tftchampions.urls", namespace="tftchampions"),
     ),
+    path(
+        "templatematching/",
+        include("portfolio.templatematching.urls", namespace="templatematching"),
+    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

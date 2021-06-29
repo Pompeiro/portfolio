@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load templatematching_extras %}
+
+
+function imgError(image) {
+    image.onerror = "";
+    image.src = "/images/noimage.gif";
+    return true;
+}
+
+{% block title %}Uploaded image: {{ uploadedimage.image.name|cut:"templatematching/"|cut:".jpg" }}{% endblock title %}
+
+{% block content %}
+  <div class="section-3">
+    <h2>{{ uploadedimage.image.name|cut:"templatematching/"|cut:".jpg" }}</h2>
+
+
+
+    <p>
+      <a class="btn btn-primary"
+         href="{% url 'templatematching:list' %}"
+         role="button">
+        Uploaded image list
+      </a>
+    </p>
+
+    {% if uploadedimage.needle %}
+      <p>Needle: {{ ploadedimage.needle }}</p>
+    {% endif %}
+
+
+
+    <img src="{{ uploadedimage.image.url }}" alt="Uploaded image">
+  </div>
+
+
+
+
+{% endblock content %}

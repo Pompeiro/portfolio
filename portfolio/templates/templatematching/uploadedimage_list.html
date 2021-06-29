@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Uploaded image list{% endblock title %}
+
+{% block content %}
+  <ul>
+    {% for image in uploadedimage_list %}
+      <li><a href="{% url 'templatematching:detail' image.slug %}">{{ image.image.name|cut:"templatematching/"|cut:".jpg" }}</a></li>
+    {% endfor %}
+  </ul>
+
+<p>Don't see a image listed here?</p>
+<p>
+  <a class="btn btn-primary"
+     href="{% url 'templatematching:add' %}" role="button">
+    Add image
+  </a>
+</p>
+
+{% endblock content %}

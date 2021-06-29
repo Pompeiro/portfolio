@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{  view.action|default:"Add" }} Image{% endblock title %}
+
+{% block content %}
+{% with action=view.action|default:"Add" %}
+  <h1>{{ action }} Image</h1>
+  <form method="post" enctype="multipart/form-data" action=".">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">{{ action }}</button>
+  </form>
+{% endwith %}
+{% endblock %}

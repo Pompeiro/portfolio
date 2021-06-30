@@ -1,7 +1,17 @@
 portfolio
 =========
 
-My django-based portfolio webapp.
+My django-based portfolio webapp. Contains two CRUD apps.
+
+portfolioapp
+=========
+
+CRUD to serve my projects on the website. Users are allowed only to view a list of projects or single project detail. Superuser can also add projects and update them.
+
+tftchampions
+=========
+
+CRUD which allow for registered users to create/read/update/delete tft champions.
 
 .. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter
      :target: https://github.com/pydanny/cookiecutter-django/
@@ -57,22 +67,3 @@ Running tests with py.test
 ::
 
   $ pytest
-
-Live reloading and Sass CSS compilation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Moved to `Live reloading and SASS compilation`_.
-
-.. _`Live reloading and SASS compilation`: http://cookiecutter-django.readthedocs.io/en/latest/live-reloading-and-sass-compilation.html
-
-Deployment
-----------
-
-The following details how to deploy this application.
-
-Heroku
-^^^^^^
-
-See detailed `cookiecutter-django Heroku documentation`_.
-
-.. _`cookiecutter-django Heroku documentation`: http://cookiecutter-django.readthedocs.io/en/latest/deployment-on-heroku.html

@@ -5,7 +5,7 @@ import numpy as np
 from django.conf import settings
 
 
-def get_matched_image(image, needle):
+def get_matched_image(image, needle, threshold=0.95):
     if not needle:
         return image
     else:
@@ -19,7 +19,6 @@ def get_matched_image(image, needle):
         w, h = template.shape[::-1]
 
         res = cv.matchTemplate(img_gray, template, cv.TM_CCORR_NORMED)
-        threshold = 0.95
         loc = np.where(res >= threshold)
 
         for pt in zip(*loc[::-1]):

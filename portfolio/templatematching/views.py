@@ -9,7 +9,7 @@ class TemplateMatchingListView(ListView):
 
 class TemplateMatchingCreateView(CreateView):
     model = UploadedImage
-    fields = ["image", "needle"]
+    fields = ["image", "needle", "threshold"]
 
 
 class TemplateMatchingDetailView(DetailView):

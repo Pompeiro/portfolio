@@ -19,10 +19,25 @@ NEEDLE_CHOICES = (
     ("playGameButton", "Play game button"),
 )
 
+THRESHOLD_LOWER_CONSTRAINT = 0.0
+THRESHOLD_UPPER_CONSTRAINT = 1.0
+
 
 class UploadedImage(TimeStampedModel):
-    image = models.ImageField(upload_to="templatematching")
-    needle = models.CharField(max_length=50, choices=NEEDLE_CHOICES, blank=True)
+    image = models.ImageField("Haystack image", upload_to="templatematching")
+    needle = models.CharField(
+        "Needle image", max_length=50, choices=NEEDLE_CHOICES, blank=True
+    )
+    threshold = models.FloatField("Match threshold, range:0.0-1.0", default=0.95)
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                check=models.Q(threshold__gte=THRESHOLD_LOWER_CONSTRAINT)
+                & models.Q(threshold__lte=THRESHOLD_UPPER_CONSTRAINT),
+                name="A dps value is valid between 0.0 and 1.0",
+            )
+        ]
 
     # https://stackoverflow.com/questions/4380879/django-model-field-default-based-off-another-field-in-same-model
 
@@ -42,7 +57,7 @@ class UploadedImage(TimeStampedModel):
     def save(self, *args, **kwargs):
         pil_img = Image.open(self.image)
         cv_img = np.array(pil_img)
-        img = get_matched_image(cv_img, self.needle)
+        img = get_matched_image(cv_img, self.needle, self.threshold)
         im_pil = Image.fromarray(img)
 
         buffer = BytesIO()

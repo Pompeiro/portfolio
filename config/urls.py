@@ -27,6 +27,10 @@ urlpatterns = [
         "templatematching/",
         include("portfolio.templatematching.urls", namespace="templatematching"),
     ),
+    path(
+        "charts/",
+        include("portfolio.charts.urls", namespace="charts"),
+    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

@@ -1,5 +1,4 @@
 /* global*/
-{% load static i18n %}
 *{
     box-sizing: border-box;
     padding: 0;
@@ -116,7 +115,6 @@ padding: 10px 0;
 .proj-img{
     position: relative;
     height: 150px;
-    background-image: url({% static 'images/portfolioapp/analytics.jpg' %});
     background-position: center;
     background-size: cover;
 }

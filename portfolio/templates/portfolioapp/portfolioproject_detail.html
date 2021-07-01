@@ -49,9 +49,12 @@ function imgError(image) {
         <div class="examples">
                 <p><img src="{{ portfolioproject.photo.url }}" alt="Project image" width="350" height="280"></p>
         </div>
+
+     {% if portfolioproject.try_online_url %}
         <div class="btn">
                 <a href="{{ portfolioproject.try_online_url }}"><button class="btn-inside">try it online!</button></a>
         </div>
+     {% endif %}
     {% if request.user.is_superuser %}
       <p>
         <div class="btn">

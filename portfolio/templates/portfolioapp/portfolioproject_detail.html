@@ -1,4 +1,5 @@
 {% extends "portfolioapp/base_portfolio.html" %}
+{% load static i18n %}
 
 function imgError(image) {
     image.onerror = "";
@@ -9,43 +10,55 @@ function imgError(image) {
 {% block title %}Projects: {{ portfolioproject.title }}{% endblock title %}
 
 {% block content %}
-  <div class="section-3">
-    <h2>{{ portfolioproject.title }}</h2>
+   <div class="section-3">
+         <div class="btn">
+            <a href="{% url 'portfolioapp:list' %}"><button class="btn-inside">Project list</button></a>
+        </div>
+         <div class="proj-img">
+          <div class="proj-title">
+          <h1>{{ portfolioproject.title }}</h1>
+          </div>
 
-    {% if request.user.is_superuser %}
-      <p>
-        <a class="btn btn-primary"
-           href="{% url 'portfolioapp:update' portfolioproject.slug %}"
-           role="button">
-          Update
-        </a>
-      </p>
-    {% endif %}
+           <div class="hero-bg"></div>
+         </div>
 
-    <p>
-      <a class="btn btn-primary"
-         href="{% url 'portfolioapp:list' %}"
-         role="button">
-        Project list
-      </a>
-    </p>
-
-    {% if portfolioproject.website %}
-      <p>Website: <a href="{{ portfolioproject.website }}">{{ portfolioproject.website }}</a></p>
-    {% endif %}
-
-    {% if portfolioproject.try_online_url %}
-      <p>Try it online: <a href="{{ portfolioproject.try_online_url }}">{{ portfolioproject.try_online_url }}</a></p>
-    {% endif %}
 
     {% if portfolioproject.description %}
-      <p>Description: {{ portfolioproject.description|linebreaksbr }}</p>
+
+    <div class="description-proj1">
+            <h2>Description</h2>
+            <p>{{ portfolioproject.description|linebreaksbr }}</p>
+            {% if portfolioproject.website %}
+              <p>Website: <a href="{{ portfolioproject.website }}">{{ portfolioproject.website }}</a></p>
+            {% endif %}
+    </div>
+    {% endif %}
+    {% if portfolioproject.description %}
+
+    <div class="technologies-proj1">
+              <p>Technologies:
+                <ul>
+                  {% for tech in portfolioproject.technology_set.all %}
+                    <li>{{ tech }}</li>
+                  {% endfor %}
+                </ul>
+              </p>
+    </div>
     {% endif %}
 
-    <img src="{{ portfolioproject.photo.url }}" alt="Project image" width="350" height="280">
-  </div>
-
-
-
+        <div class="examples">
+                <p><img src="{{ portfolioproject.photo.url }}" alt="Project image" width="350" height="280"></p>
+        </div>
+        <div class="btn">
+                <a href="{{ portfolioproject.try_online_url }}"><button class="btn-inside">try it online!</button></a>
+        </div>
+    {% if request.user.is_superuser %}
+      <p>
+        <div class="btn">
+            <a href="{% url 'portfolioapp:update' portfolioproject.slug %}"><button class="btn-inside">Update</button></a>
+        </div>
+      </p>
+    {% endif %}
+    </div>
 
 {% endblock content %}

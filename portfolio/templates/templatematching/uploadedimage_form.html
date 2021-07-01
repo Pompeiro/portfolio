@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static i18n %}
 {% load crispy_forms_tags %}
 
 {% block title %}{{  view.action|default:"Add" }} Image{% endblock title %}
@@ -12,4 +13,46 @@
     <button type="submit" class="btn btn-primary">{{ action }}</button>
   </form>
 {% endwith %}
+STATIC_ROOT
+<hr/>
+<p>
+  <ul style="line-height:300%">
+    <li>
+      acceptGameButton
+      <img src="{% static 'images/templatematching/templatematching_needles/acceptGameButton.jpg' %}" alt="Image preview">
+    </li>
+    <li>
+      afterLogINButton
+      <img src="{% static 'images/templatematching/templatematching_needles/afterLogINButton.jpg' %}" alt="Image preview">
+    </li>
+    <li>
+      confirmationButton
+      <img src="{% static 'images/templatematching/templatematching_needles/confirmationButton.jpg' %}" alt="Image preview">
+    </li>
+    <li>
+      findMatchButton
+      <img src="{% static 'images/templatematching/templatematching_needles/findMatchButton.jpg' %}" alt="Image preview">
+    </li>
+    <li>
+      inQueueButton
+      <img src="{% static 'images/templatematching/templatematching_needles/inQueueButton.jpg' %}" alt="Image preview">
+    </li>
+    <li>
+      inQueueFindingMatch
+      <img src="{% static 'images/templatematching/templatematching_needles/inQueueFindingMatch.jpg' %}" alt="Image preview">
+    </li>
+    <li>
+      playGameButton
+      <img src="{% static 'images/templatematching/templatematching_needles/playGameButton.jpg' %}" alt="Image preview">
+    </li>
+  </ul>
+</p>
+
+
+
+
+
+
+
+
 {% endblock %}

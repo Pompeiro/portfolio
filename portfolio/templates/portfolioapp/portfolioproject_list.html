@@ -1,50 +1,55 @@
+<!DOCTYPE html>
 {% extends "portfolioapp/base_portfolio.html" %}
 
 {% block title %}Project list{% endblock title %}
 
+
 {% block content %}
-    <div class="grid-2">
-        <div class="section-1">
+
+    <div class="container">
+        <div class="contact wrapper">
             <i class="fas fa-code fa-5x white"></i>
             <h2>Maciej Gojlik</h2>
             <p>Gdańsk, Poland.</p>
             <a href="https://www.linkedin.com/in/maciej-gojlik-740b34187/"><i class="fab fa-linkedin"></i></a>
             <a href="https://github.com/Pompeiro"><i class="fab fa-github"></i></a>
+            <h2>E-MAIL</h2>
+            <p><i class="fas fa-at"></i>maciejgojlik@wp.pl</p>
         </div>
-        <div class="section-2">
-            <h2>About</h2>
-            <p>Currently I am looking for a job in the software development field. Now I have many courses about computer science in control
-systems such as: databases, operating systems, network programming, data visualization, basics of web development and project
-management. I enjoy these courses, and I am highly motivated to get some commercial experience.
+        <div class="section-2 wrapper">
+            <h2>About me</h2>
+            <p>I am a Python developer with above 1 year non-commercial experience in creating software. Currently I am
+              expanding my web development skills especially in Django  and unit tests in Django. During college I took
+              part in many courses about computer science in control systems such as: databases, operating systems,
+              network programming, data visualization and project management.
             </p>
             <h2>Education</h2>
             <h3>Gdańsk University of Technology</h3>
             <p>3rd semester Master of Science: Computer Science in Control Engineering</p>
-
-            <h2>Skills</h2>
-            <ul style="column-count:2">
-              <li>Python3</li>
-              <li>Django</li>
-              <li>SQL</li>
-              <li>GIT</li>
-              <li>Selenium</li>
-              <li>pyautogui</li>
-              <li>OpenCv</li>
-              <li>Pandas</li>
-              <li>Numpy</li>
-              <li>FastAI</li>
-            </ul>
-            <h2>Projects</h2>
-            <ul>
-              {% for project in portfolioproject_list %}
-                <li><a href="{% url 'portfolioapp:detail' project.slug %}">{{ project.title }}</a></li>
-              {% endfor %}
-            </ul>
-            <h2>Contact</h2>
-            <p>maciejgojlik@wp.pl</p>
+            <div class="skills wrapper">
+              <h2>Skills</h2>
+              <ul style="column-count:2">
+                <li>Python3</li>
+                <li>Django</li>
+                <li>SQL</li>
+                <li>GIT</li>
+                <li>Selenium</li>
+                <li>pyautogui</li>
+                <li>OpenCv</li>
+                <li>Pandas</li>
+                <li>Numpy</li>
+                <li>FastAI</li>
+              </ul>
+            </div>
+            <div class="projects">
+              <h2>Projects</h2>
+              <ul>
+                {% for project in portfolioproject_list %}
+                  <li><a href="{% url 'portfolioapp:detail' project.slug %}">{{ project.title }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
         </div>
     </div>
-
-
 
 {% endblock content %}

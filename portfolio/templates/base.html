@@ -60,6 +60,12 @@
             <li class="nav-item">
               <a id="log-in-link" class="nav-link" href="{% url 'tftchampions:list' %}">Tft champions</a>
             </li>
+            <li class="nav-item">
+              <a id="log-in-link" class="nav-link" href="{% url 'templatematching:add' %}">Template matching</a>
+            </li>
+            <li class="nav-item">
+              <a id="log-in-link" class="nav-link" href="{% url 'charts:list' %}">Charts</a>
+            </li>
             {% if request.user.is_authenticated %}
               <li class="nav-item">
                 {# URL provided by django-allauth/account/urls.py #}

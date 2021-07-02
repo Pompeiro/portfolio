@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Chart{% endblock title %}
+
+
+{% block content %}
+
+<canvas id="myChart" width="400" height="300"></canvas>
+<script>
+var ctx = document.getElementById('myChart');
+// const labels =  ["dps", "attackspeed", "dmg", "range", "hp", "mana", "armor", "mr", "cost", "tier"];
+// const labels = ["tier", "cost", "mr", "armor", "mana", "hp", "range", "dmg", "attackspeed", "dps"];
+const colors = ["red", "green", "blue"]
+const labels =  ["dps", "dmg", "range", "hp", "mana", "armor", "mr", "cost", "tier"];
+const data = {
+  labels: labels,
+  datasets: [
+      {% for champion in champion_list %}
+    {
+      label: "{{ champion.name }}",
+      data: [{{ champion.dps }}, {{ champion.dmg }}, {{ champion.range }}, {{ champion.difference }}, {{ champion.mana }}, {{ champion.armor }}, {{ champion.mr }}, {{ champion.cost }}, {{ champion.tier }}],
+      borderColor: [
+                colors[{{ forloop.counter }}],
+            ],
+      backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+            ],
+    },
+  {% endfor %}
+
+  ]
+};
+
+
+var myChart = new Chart(ctx, {
+    type: 'radar',
+    data: data,
+    options: {
+    responsive: true,
+    plugins: {
+      title: {
+        display: true,
+        text: '{{ max_hp }}'
+      }
+    }
+  },
+});
+</script>
+{% endblock content %}

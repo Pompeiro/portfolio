@@ -10,6 +10,11 @@ urlpatterns = [
         name="list",
     ),
     path(
+        route="form/",
+        view=views.ChampionFormView.as_view(),
+        name="form",
+    ),
+    path(
         route="<slug:slug>/",
         view=views.ChartDetailView.as_view(),
         name="detail",

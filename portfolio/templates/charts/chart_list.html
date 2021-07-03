@@ -10,7 +10,7 @@
 var ctx = document.getElementById('myChart');
 // const labels =  ["dps", "attackspeed", "dmg", "range", "hp", "mana", "armor", "mr", "cost", "tier"];
 // const labels = ["tier", "cost", "mr", "armor", "mana", "hp", "range", "dmg", "attackspeed", "dps"];
-const colors = ["red", "green", "blue"]
+const colors = ["red", "green", "blue", "magenta", "cyan"]
 const labels =  ["dps", "attackspeed", "dmg", "range", "hp", "mana", "armor", "mr", "cost", "tier"];
 const data = {
   labels: labels,
@@ -50,5 +50,7 @@ var myChart = new Chart(ctx, {
 </script>
 <p>Max dps: {{ max_dps }}, Max attackspeed: {{ max_attackspeed|stringformat:".2f" }}, Max dmg: {{ max_dmg}}, Max range: {{ max_range }},Max hp: {{ max_hp }},
   Max mana: {{ max_mana }}, Max armor: {{ max_armor }}, Max mr: {{ max_mr }}, Max cost: {{ max_cost }}, Max tier: {{ max_tier }}</p>
+
+  <p>Found champions {{ Champions }}</p>
 
 {% endblock content %}

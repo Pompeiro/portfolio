@@ -2,9 +2,12 @@
 from decimal import Decimal
 
 from django.db.models import ExpressionWrapper, F, FloatField, Max
-from django.views.generic import DetailView, ListView
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.views.generic import DetailView, FormView, ListView
 
 from ..tftchampions.models import Champion
+from .forms import ChampForm
 
 
 class ChampionListView(ListView):
@@ -80,12 +83,29 @@ class ChampionListView(ListView):
     def get_context_data(self, **kwargs):
         # https://docs.djangoproject.com/en/3.2/ref/class-based-views/mixins-simple/#django.views.generic.base.ContextMixin.extra_context
         # https://newbedev.com/django-passing-variables-to-templates-from-class-based-views
+        Champions = self.request.session["Champions"]
 
         context = super(ChampionListView, self).get_context_data(**kwargs)
         context.update(self.MAX_DICT)
+        context.update({"Champions": Champions})
+        print(context)
         return context
 
 
 class ChartDetailView(DetailView):
     model = Champion
     template_name = "charts/chart_detail.html"
+
+
+class ChampionFormView(FormView):
+    form_class = ChampForm
+    template_name = "charts/chart_form.html"
+
+    def form_valid(self, form):
+        """If the form is valid, redirect to the supplied URL with form results passed in session."""
+        Champions = form.cleaned_data.get("Champions")
+        self.request.session["Champions"] = Champions
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_success_url(self):
+        return reverse("charts:list")

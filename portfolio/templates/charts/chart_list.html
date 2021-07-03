@@ -16,20 +16,22 @@ const data = {
   labels: labels,
   datasets: [
       {% for champion in champion_list %}
-    {
-      label: "{{ champion.name }}",
-      data: [{{ champion.scaled_dps|stringformat:".2f" }}, {{ champion.scaled_attackspeed|stringformat:".2f" }},
-      {{ champion.scaled_dmg|stringformat:".2f" }}, {{ champion.scaled_range|stringformat:".2f" }},
-      {{ champion.scaled_hp|stringformat:".2f" }}, {{ champion.scaled_mana|stringformat:".2f" }},
-      {{ champion.scaled_armor|stringformat:".2f" }}, {{ champion.scaled_mr|stringformat:".2f" }},
-      {{ champion.scaled_cost|stringformat:".2f" }}, {{ champion.scaled_tier|stringformat:".2f" }}],
-      borderColor: [
-                colors[{{ forloop.counter }}],
-            ],
-      backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-            ],
-    },
+        {% if champion.name in Champions %}
+          {
+            label: "{{ champion.name }}",
+            data: [{{ champion.scaled_dps|stringformat:".2f" }}, {{ champion.scaled_attackspeed|stringformat:".2f" }},
+            {{ champion.scaled_dmg|stringformat:".2f" }}, {{ champion.scaled_range|stringformat:".2f" }},
+            {{ champion.scaled_hp|stringformat:".2f" }}, {{ champion.scaled_mana|stringformat:".2f" }},
+            {{ champion.scaled_armor|stringformat:".2f" }}, {{ champion.scaled_mr|stringformat:".2f" }},
+            {{ champion.scaled_cost|stringformat:".2f" }}, {{ champion.scaled_tier|stringformat:".2f" }}],
+            borderColor: [
+                      colors[{{ forloop.counter }}],
+                  ],
+            backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                  ],
+          },
+        {% endif %}
   {% endfor %}
   ]
 };
@@ -52,5 +54,14 @@ var myChart = new Chart(ctx, {
   Max mana: {{ max_mana }}, Max armor: {{ max_armor }}, Max mr: {{ max_mr }}, Max cost: {{ max_cost }}, Max tier: {{ max_tier }}</p>
 
   <p>Found champions {{ Champions }}</p>
+      {% for champion in champion_list %}
+          <p>counter {{ forloop.counter }} {{ champion}}</p>
+
+        {% if champion.name in Champions %}
+          <p>Champion {{ forloop.counter }} {{ champion}}</p>
+        {% else %}
+          <p>not found</p>
+        {% endif %}
+  {% endfor %}
 
 {% endblock content %}

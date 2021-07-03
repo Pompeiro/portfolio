@@ -9,3 +9,9 @@ class ChampForm(forms.Form):
     Champions = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple, choices=OPTIONS
     )
+
+    def clean_Champions(self):
+        value = self.cleaned_data["Champions"]
+        if len(value) > 5:
+            raise forms.ValidationError("You can't select more than 5 champions.")
+        return value

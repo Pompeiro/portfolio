@@ -4,14 +4,33 @@
 
 
 {% block content %}
-
+{% if Warning %}
+  <h1>{{ Warning }}</h1>
+<p></p><a href="{% url 'charts:list' %}">Link</a></p>
+{% endif %}
 <canvas id="myChart" width="500" height="500"></canvas>
 <script>
 var ctx = document.getElementById('myChart');
 // const labels =  ["dps", "attackspeed", "dmg", "range", "hp", "mana", "armor", "mr", "cost", "tier"];
 // const labels = ["tier", "cost", "mr", "armor", "mana", "hp", "range", "dmg", "attackspeed", "dps"];
-const colors = ["red", "green", "blue", "magenta", "cyan"]
+const backgroundColors = [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ];
+const borderColors = [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ];
 const labels =  ["dps", "attackspeed", "dmg", "range", "hp", "mana", "armor", "mr", "cost", "tier"];
+let i = 0;
 const data = {
   labels: labels,
   datasets: [
@@ -25,21 +44,29 @@ const data = {
             {{ champion.scaled_armor|stringformat:".2f" }}, {{ champion.scaled_mr|stringformat:".2f" }},
             {{ champion.scaled_cost|stringformat:".2f" }}, {{ champion.scaled_tier|stringformat:".2f" }}],
             borderColor: [
-                      colors[{{ forloop.counter }}],
+                      borderColors[i++],
                   ],
-            backgroundColor: [
-                      'rgba(255, 99, 132, 0.2)',
-                  ],
+            backgroundColor: backgroundColors[i-1],
           },
         {% endif %}
   {% endfor %}
   ]
 };
-
+Chart.defaults.font.size = 15;
+Chart.defaults.font.weight = "bold";
 var myChart = new Chart(ctx, {
     type: 'radar',
     data: data,
     options: {
+       scales: {
+      r: {
+        pointLabels: {
+          font: {
+            size: 15
+          }
+        }
+      }
+    },
     responsive: false,
     plugins: {
       title: {
@@ -53,14 +80,13 @@ var myChart = new Chart(ctx, {
 <p>Max dps: {{ max_dps }}, Max attackspeed: {{ max_attackspeed|stringformat:".2f" }}, Max dmg: {{ max_dmg}}, Max range: {{ max_range }},Max hp: {{ max_hp }},
   Max mana: {{ max_mana }}, Max armor: {{ max_armor }}, Max mr: {{ max_mr }}, Max cost: {{ max_cost }}, Max tier: {{ max_tier }}</p>
 
-  <p>Found champions {{ Champions }}</p>
       {% for champion in champion_list %}
-          <p>counter {{ forloop.counter }} {{ champion}}</p>
+          <p>foorloop counter: {{ forloop.counter }} champion: {{ champion}}</p>
 
         {% if champion.name in Champions %}
-          <p>Champion {{ forloop.counter }} {{ champion}}</p>
+          <p>Found champion: {{ champion}}</p>
         {% else %}
-          <p>not found</p>
+          <p>Champion not found</p>
         {% endif %}
   {% endfor %}
 

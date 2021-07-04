@@ -10,6 +10,13 @@ class ChampForm(forms.Form):
         widget=forms.CheckboxSelectMultiple, choices=OPTIONS
     )
 
+    def __init__(self, *args, **kwargs):
+        super(ChampForm, self).__init__(*args, **kwargs)
+        self.fields["Champions"] = forms.MultipleChoiceField(
+            widget=forms.CheckboxSelectMultiple,
+            choices=[(o.name, o.name) for o in Champion.objects.all()],
+        )  # your query here
+
     def clean_Champions(self):
         value = self.cleaned_data["Champions"]
         if len(value) > 5:

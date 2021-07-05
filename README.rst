@@ -1,7 +1,7 @@
 portfolio
 =========
 
-My django-based portfolio webapp. Contains two CRUD apps.
+My django-based portfolio webapp. Contains two CRUD apps, one OpenCV + Django app and one app which draws ChartJS radar chart based on data from CRUD app.
 
 portfolioapp
 =========
@@ -12,6 +12,16 @@ tftchampions
 =========
 
 CRUD which allow for registered users to create/read/update/delete tft champions.
+
+templatematching
+=========
+
+Send haystack image, pick needle image from list and get template matching result. Needle found in haystack image is marked with red rectangle.
+
+charts
+=========
+
+Django app based on Teamfight Tactics Champions CRUD. You can pick up to 5 champions from CRUD app, and then render Chartjs radar plot with selected champions stats.
 
 .. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter
      :target: https://github.com/pydanny/cookiecutter-django/

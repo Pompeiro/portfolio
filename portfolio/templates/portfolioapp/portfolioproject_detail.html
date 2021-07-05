@@ -28,28 +28,31 @@ function imgError(image) {
     <div class="description-proj1">
             <h2>Description</h2>
             <p>{{ portfolioproject.description|linebreaksbr }}</p>
-            {% if portfolioproject.website %}
-              <p>Website: <a href="{{ portfolioproject.website }}">{{ portfolioproject.website }}</a></p>
-            {% endif %}
     </div>
     {% endif %}
-    {% if portfolioproject.description %}
+    <div class="description-github">
+            {% if portfolioproject.website %}
+              <p>Github: <a href="{{ portfolioproject.website }}"><i class="fab fa-github"></i></a></p>
+            {% endif %}
+    </div>
+    {% if portfolioproject.technology_set.all %}
+            <h2>Technologies</h2>
 
     <div class="technologies-proj1">
-              <p>Technologies:
+
                 <ul>
                   {% for tech in portfolioproject.technology_set.all %}
                     <li>{{ tech }}</li>
                   {% endfor %}
                 </ul>
-              </p>
     </div>
     {% endif %}
 
+     {% if portfolioproject.photo.url %}
         <div class="examples">
                 <p><img src="{{ portfolioproject.photo.url }}" alt="Project image" width="350" height="280"></p>
         </div>
-
+    {% endif %}
      {% if portfolioproject.try_online_url %}
         <div class="btn">
                 <a href="{{ portfolioproject.try_online_url }}"><button class="btn-inside">try it online!</button></a>

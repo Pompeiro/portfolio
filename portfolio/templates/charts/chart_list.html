@@ -6,7 +6,7 @@
 {% block content %}
 {% if Warning %}
   <h1>{{ Warning }}</h1>
-<p></p><a href="{% url 'charts:list' %}">Link</a></p>
+<p></p><a href="{% url 'charts:form' %}">Link</a></p>
 {% endif %}
 <canvas id="myChart" width="500" height="500"></canvas>
 <script>

@@ -10,7 +10,8 @@ def get_matched_image(image, needle, threshold=0.95):
         return image
     else:
         needle_path = pathlib.PurePath(
-            settings.MEDIA_ROOT + f"/templatematching_needles/{needle}.jpg"
+            settings.STATIC_ROOT
+            + f"/images/templatematching/templatematching_needles/{needle}.jpg"
         )
         template_rgb = str(needle_path)
         img_rgb = cv.cvtColor(image, cv.COLOR_BGR2RGB)

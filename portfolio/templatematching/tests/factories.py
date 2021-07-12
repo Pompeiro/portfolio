@@ -11,7 +11,7 @@ class UploadedImageFactory(factory.django.DjangoModelFactory):
             factory.django.ImageField()._make_data({"width": 1024, "height": 768}),
             "example.jpg",
         )
-    )  # factory.Faker("image_url")
+    )
     needle = factory.fuzzy.FuzzyChoice([x[0] for x in NEEDLE_CHOICES])
     threshold = factory.fuzzy.FuzzyFloat(0.0, 1.0)
 

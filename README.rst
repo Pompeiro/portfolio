@@ -69,8 +69,8 @@ Test coverage
 ^^^^^^^^^^^^^
 
 To run the tests, check your test coverage, and generate an HTML coverage report::
-
-    $ coverage run -m pytest
+ // https://stackoverflow.com/questions/19069722/psycopg2-operationalerror-cursor-does-not-exist
+    $ coverage run -m pytest --create-db
     $ coverage html
     $ open htmlcov/index.html
 

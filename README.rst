@@ -68,11 +68,15 @@ Running type checks with mypy:
 Test coverage
 ^^^^^^^^^^^^^
 
+https://stackoverflow.com/questions/19069722/psycopg2-operationalerror-cursor-does-not-exist
+
+
 To run the tests, check your test coverage, and generate an HTML coverage report::
- // https://stackoverflow.com/questions/19069722/psycopg2-operationalerror-cursor-does-not-exist
+  
     $ coverage run -m pytest --create-db
     $ coverage html
     $ open htmlcov/index.html
+
 
 Running tests with py.test
 ~~~~~~~~~~~~~~~~~~~~~~~~~~

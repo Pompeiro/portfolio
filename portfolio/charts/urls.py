@@ -6,17 +6,17 @@ app_name = "charts"
 urlpatterns = [
     path(
         route="",
-        view=views.ChampionListView.as_view(),
+        view=views.ChartsListView.as_view(),
         name="list",
     ),
     path(
         route="form/",
-        view=views.ChampionFormView.as_view(),
+        view=views.ChartsFormView.as_view(),
         name="form",
     ),
     path(
         route="<slug:slug>/",
-        view=views.ChartDetailView.as_view(),
+        view=views.ChartsDetailView.as_view(),
         name="detail",
     ),
 ]

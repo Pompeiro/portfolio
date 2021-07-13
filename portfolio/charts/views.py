@@ -7,10 +7,10 @@ from django.urls import reverse
 from django.views.generic import DetailView, FormView, ListView
 
 from ..tftchampions.models import Champion
-from .forms import ChampForm
+from .forms import ChartForm
 
 
-class ChampionListView(ListView):
+class ChartsListView(ListView):
     model = Champion
     template_name = "charts/chart_list.html"
 
@@ -31,7 +31,7 @@ class ChampionListView(ListView):
 
         # https://stackoverflow.com/questions/54828495/how-to-do-math-operations-in-django-template
 
-        qset = super(ChampionListView, self).get_queryset(*args, **kwargs)
+        qset = super(ChartsListView, self).get_queryset(*args, **kwargs)
         return qset.annotate(
             scaled_dps=ExpressionWrapper(
                 (F("dps") * Decimal("1.0") / max_dps), output_field=FloatField()
@@ -99,13 +99,13 @@ class ChampionListView(ListView):
         try:
             Champions = self.request.session["Champions"]
 
-            context = super(ChampionListView, self).get_context_data(**kwargs)
+            context = super(ChartsListView, self).get_context_data(**kwargs)
             context.update(MAX_DICT)
             context.update({"Champions": Champions})
             return context
 
         except (KeyError):
-            context = super(ChampionListView, self).get_context_data(**kwargs)
+            context = super(ChartsListView, self).get_context_data(**kwargs)
             context.update(MAX_DICT)
             context.update(
                 {
@@ -118,13 +118,13 @@ class ChampionListView(ListView):
             return context
 
 
-class ChartDetailView(DetailView):
+class ChartsDetailView(DetailView):
     model = Champion
     template_name = "charts/chart_detail.html"
 
 
-class ChampionFormView(FormView):
-    form_class = ChampForm
+class ChartsFormView(FormView):
+    form_class = ChartForm
     template_name = "charts/chart_form.html"
 
     def form_valid(self, form):

@@ -3,7 +3,7 @@ from django import forms
 from ..tftchampions.models import Champion
 
 
-class ChampForm(forms.Form):
+class ChartForm(forms.Form):
     CHOICES = Champion.objects.all()
     OPTIONS = ((x.name, x.name) for x in CHOICES)
     Champions = forms.MultipleChoiceField(
@@ -11,7 +11,7 @@ class ChampForm(forms.Form):
     )
 
     def __init__(self, *args, **kwargs):
-        super(ChampForm, self).__init__(*args, **kwargs)
+        super(ChartForm, self).__init__(*args, **kwargs)
         self.fields["Champions"] = forms.MultipleChoiceField(
             widget=forms.CheckboxSelectMultiple,
             choices=[(o.name, o.name) for o in Champion.objects.all()],
